@@ -17,28 +17,13 @@ const RES_MOD_FILE_EXT = '.res';
 
 const PNG_MOD_FILE_EXT= '.png';
 
-const ALL_FILE_EXTs = [
-  MOD_FILE_EXT,
-  LUA_MOD_FILE_EXT,
-  MIS_MOD_FILE_EXT,
-  CSV_MOD_FILE_EXT,
-  KIT_MOD_FILE_EXT,
-  RES_MOD_FILE_EXT,
-  PNG_MOD_FILE_EXT,
-];
-
-let DisoveryPath;
 let testFiles = [];
 
 //Import some assets from Vortex we'll need.
 const path = require('path');
 const FSystem = require('fs');
-const { fs, log, util } = require('vortex-api');
+const { actions, fs, log, util } = require('vortex-api');
 
-const AdditionalFolders = [
-  'GroundBranch',
-  path.join('Localization','GroundBranch')
-];
 
 
 function findGame() {
@@ -47,9 +32,8 @@ function findGame() {
 }
 
 function prepareForModding(discovery) {
-  DisoveryPath = discovery.path;
-  //log('error', DisoveryPath.toString());
   return (fs.ensureDirWritableAsync(path.join(discovery.path, 'GroundBranch', 'Content')));
+ // return (fs.ensureDirWritableAsync(path.join(discovery.path, 'GroundBranch', 'Content')));
 }
 
 function filesPassThrough(files,gameId){
@@ -61,92 +45,23 @@ function filesPassThrough(files,gameId){
   });
 }
 
-function dummyInstall(){
+function dummyInstall(){}
 
-};
-
-function getAllDirFoldersfrom(directory){
-  //let directory = path.join(DisoveryPath, 'GroundBranch', 'Content');
-  let dirList = [];
-  FSystem.readdir(directory, (err, files) => { files.forEach(file => {
-      // get the details of the file 
-      let fileDetails = FSystem.lstatSync(path.resolve(directory, file));
-      // check if the file is directory 
-      if (fileDetails.isDirectory()) {
-        log('error','Directory: ' + file);
-        dirList.push(file);
-      } else {
-        log('error','File: ' + file);
-      }
-    });
-  });
-
-  return dirList;
-}
 
 function rootInstallFolder(rootPath){
   const splitRootPath =  rootPath.split(path.sep);
   const rootPathidx = splitRootPath.lastIndexOf('Content');
   const installFolder =  splitRootPath.slice(rootPathidx);
   return installFolder;
-  // let rootPathidx;
-  
-  
-  // let dirList = getAllDirFoldersfrom(location);
-  // const fileFolder = splitRootPath[splitRootPath.length];
-  // log('error', fileFolder.toString());
-  // let installFolder = [];
-
-
-  // // check file folder to see if it matches a folder in dirList
-
-
-  // for (j = 0 ; j < splitRootPath.length ; j++){
-  //   for(i = 0; i < AdditionalFolders.length; i++){
-
-  //      //if found; set inx to fileFolder idx then return install folder
-  //     if (dirList.includes(splitRootPath[j])){
-
-  //       rootPathidx = splitRootPath.indexOf(splitRootPath[j-1]);
-  //       if(i >= 1) {
-
-  //         installFolder.push(...location,AdditionalFolders[i],...splitRootPath.slice(rootPathidx))
-  //         return installFolder;
-          
-  //       }else{
-         
-  //         return path.join(splitRootPath.slice(rootPathidx));
-  //       };
-  //     } else{
-  //       //else; go up on folder and check again
-  //       dirList = getAllDirFoldersfrom(path.join(location, AdditionalFolders[i]))
-  //     };
-
-  //   };
-
-  //   dirList = getAllDirFoldersfrom(location);
-  // };
-
-
-
-    
-    
-  //if found; thats index + directory^^^^^^^^
 
 }
 
 //Support Testers
-function testSupportedContent(files, gameId) {
- let supported = false
- 
+function testSupportForPak(files, gameId) {
   // Make sure we're able to support this mod.
-  for (const Extension of ALL_FILE_EXTs){
-    if((gameId === GAME_ID) &&
-    (files.find(file => path.extname(file).toLowerCase() === Extension)!== undefined)){
-      supported = true;
-      break;
-    };
-  };
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === MOD_FILE_EXT)!== undefined);
+
   return Promise.resolve({
     supported,
     requiredFiles: [],
@@ -154,12 +69,101 @@ function testSupportedContent(files, gameId) {
 }
 
 
+function testSupportForLua(files, gameId) {
+  // Make sure we're able to support this mod.
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === LUA_MOD_FILE_EXT)!== undefined);
+
+  return Promise.resolve({
+    supported,
+    requiredFiles: [],
+  });
+}
+
+function testSupportForMis(files, gameId) {
+  // Make sure we're able to support this mod.
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === MIS_MOD_FILE_EXT)!== undefined);
+
+  return Promise.resolve({
+    supported,
+    requiredFiles: [],
+  });
+}
+
+function testSupportForKit(files, gameId) {
+  // Make sure we're able to support this mod.
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === KIT_MOD_FILE_EXT)!== undefined);
+
+  return Promise.resolve({
+    supported,
+    requiredFiles: [],
+  });
+}
+
+function testSupportForCSV(files, gameId) {
+  // Make sure we're able to support this mod.
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === CSV_MOD_FILE_EXT)!== undefined);
+
+  return Promise.resolve({
+    supported,
+    requiredFiles: [],
+  });
+}
+
+function testSupportForRES(files, gameId) {
+  // Make sure we're able to support this mod.
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === RES_MOD_FILE_EXT)!== undefined);
+
+  return Promise.resolve({
+    supported,
+    requiredFiles: [],
+  });
+}
+
+function testSupportForPNG(files, gameId) {
+  // Make sure we're able to support this mod.
+  let supported = (gameId === GAME_ID) &&
+    (files.find(file => path.extname(file).toLowerCase() === PNG_MOD_FILE_EXT)!== undefined);
+
+  return Promise.resolve({
+    supported,
+    requiredFiles: [],
+  });
+}
 
 //------------------------------END OF TESTERS---------------------------------------------------------------------------
 
 //Installers
+function installPakContent(files) {
+  // The .pak file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
+  const modFile = files.find(file => path.extname(file).toLowerCase() === MOD_FILE_EXT);
+  const idx = modFile.indexOf(path.basename(modFile));
+  const rootPath = path.dirname(modFile);
 
-function installSupportedContent(files) {
+  // Remove directories and anything that isn't in the rootPath.
+  const filtered = files.filter(file =>
+    ((file.indexOf(rootPath) !== -1)
+    && (!file.endsWith(path.sep))));
+
+
+  const instructions = filtered.map(file => {
+    return {
+      type: 'copy',
+      source: file,
+      destination: path.join(file.substr(idx)),
+    };
+  });
+
+  return Promise.resolve({ instructions });
+}
+
+
+
+function installLuaContent(files) {
   // The .lua file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
   const modFile = files.find(file => path.extname(file).toLowerCase() === LUA_MOD_FILE_EXT);
   const idx = modFile.indexOf(path.basename(modFile));
@@ -167,7 +171,6 @@ function installSupportedContent(files) {
 
   // Find the correct install folder
   const installFolder = rootInstallFolder(rootPath);
-  log('error', installFolder);
 
   // Remove directories and anything that isn't in the rootPath.
   const filtered = files.filter(file =>
@@ -186,6 +189,133 @@ function installSupportedContent(files) {
   return Promise.resolve({ instructions });
 }
 
+
+
+function installMisContent(files) {
+  // The .mis file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
+  const modFile = files.find(file => path.extname(file).toLowerCase() === MIS_MOD_FILE_EXT);
+  const idx = modFile.indexOf(path.basename(modFile));
+  const rootPath = path.dirname(modFile);
+ 
+  const installFolder = rootInstallFolder(rootPath);
+
+  // Remove directories and anything that isn't in the rootPath.
+  const filtered = files.filter(file =>
+    ((file.indexOf(rootPath) !== -1)
+    && (!file.endsWith(path.sep))));
+
+
+  const instructions = filtered.map(file => {
+    return {
+      type: 'copy',
+      source: file,
+      destination: path.join(installFolder.join('/'), file.substr(idx)),
+    };
+  });
+
+  return Promise.resolve({ instructions });
+}
+
+
+
+function installKitContent(files) {
+  // The .kit file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
+  const modFile = files.find(file => path.extname(file).toLowerCase() === KIT_MOD_FILE_EXT);
+  const idx = modFile.indexOf(path.basename(modFile));
+  const rootPath = path.dirname(modFile);
+  
+  // Find the correct install folder
+  const installFolder = rootInstallFolder(rootPath);
+  
+  // Remove directories and anything that isn't in the rootPath.
+  const filtered = files.filter(file =>
+    ((file.indexOf(rootPath) !== -1)
+    && (!file.endsWith(path.sep))));
+
+
+  const instructions = filtered.map(file => {
+    return {
+      type: 'copy',
+      source: file,
+      destination: path.join( installFolder.join('/') , file.substr(idx)),
+    };
+  });
+
+  return Promise.resolve({ instructions });
+}
+
+function installCSVContent(files) {
+  // The .csv file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
+  const modFile = files.find(file => path.extname(file).toLowerCase() === CSV_MOD_FILE_EXT);
+  const idx = modFile.indexOf(path.basename(modFile));
+  const rootPath = path.dirname(modFile);
+
+  const installFolder = rootInstallFolder(rootPath);
+
+  // Remove directories and anything that isn't in the rootPath.
+  const filtered = files.filter(file => ((file.indexOf(rootPath) !== -1) && (!file.endsWith(path.sep))));
+
+
+  const instructions = filtered.map(file => {
+    return {
+      type: 'copy',
+      source: file,
+      destination: path.join(installFolder.join('/')  ,file.substr(idx)),
+    };
+  });
+
+  return Promise.resolve({ instructions });
+}
+
+
+function installRESContent(files) {
+  // The .res file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
+  const modFile = files.find(file => path.extname(file).toLowerCase() === RES_MOD_FILE_EXT);
+  const idx = modFile.indexOf(path.basename(modFile));
+  const rootPath = path.dirname(modFile);
+
+  const installFolder = rootInstallFolder(rootPath);
+
+  // Remove directories and anything that isn't in the rootPath.
+  const filtered = files.filter(file => ((file.indexOf(rootPath) !== -1) && (!file.endsWith(path.sep))));
+
+
+  const instructions = filtered.map(file => {
+    return {
+      type: 'copy',
+      source: file,
+      destination: path.join(installFolder.join('/'),file.substr(idx)),
+    };
+  });
+
+  return Promise.resolve({ instructions });
+}
+
+function installPNGContent(files) {
+  // The .kit file is expected to always be positioned in the mods directory we're going to disregard anything placed outside the root.
+  const modFile = files.find(file => path.extname(file).toLowerCase() === PNG_MOD_FILE_EXT);
+  const idx = modFile.indexOf(path.basename(modFile));
+  const rootPath = path.dirname(modFile);
+  
+  // Find the correct install folder
+  const installFolder = rootInstallFolder(rootPath);
+  
+  // Remove directories and anything that isn't in the rootPath.
+  const filtered = files.filter(file =>
+    ((file.indexOf(rootPath) !== -1)
+    && (!file.endsWith(path.sep))));
+
+
+  const instructions = filtered.map(file => {
+    return {
+      type: 'copy',
+      source: file,
+      destination: path.join( installFolder.join('/') , file.substr(idx)),
+    };
+  });
+
+  return Promise.resolve({ instructions });
+}
 //--------------------------------------END OF INSTALLERS------------------------------------------
 
 
@@ -199,6 +329,7 @@ const getDiscoveryPath = (api) => {
     log('error', 'ground branch was not discovered');
     return '.';
   }
+ log('error' , discovery.path)
   return discovery.path;
 }
 
@@ -236,10 +367,33 @@ function main(context) {
 	
   context.registerInstaller('dummy installer',25,filesPassThrough, dummyInstall)
 
-  for (i = 0; i < testFiles.length;i++){
-    context.registerInstaller('groundbranch-mods', 25, testSupportedContent, installSupportedContent);
-    log('error','test');
-    context.registerModType('gb-default-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, MOD_FILE_EXT));
+  for (i = 0; i< testFiles.length;i++){
+    context.registerInstaller('groundbranch-mod-pak', 25, testSupportForPak, installPakContent);
+    context.registerModType('gb-Pak-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, MOD_FILE_EXT));
+
+
+    context.registerInstaller('groundbranch-mod-lua', 25, testSupportForLua, installLuaContent);
+    context.registerModType('gb-Lua-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, LUA_MOD_FILE_EXT));
+
+
+    context.registerInstaller('groundbranch-mod-mis', 25, testSupportForMis, installMisContent);
+    context.registerModType('gb-Mis-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, MIS_MOD_FILE_EXT));
+
+
+    context.registerInstaller('groundbranch-mod-kit', 25, testSupportForKit, installKitContent);
+    context.registerModType('gb-Kit-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, KIT_MOD_FILE_EXT));
+
+
+    context.registerInstaller('groundbranch-mod-res', 25, testSupportForRES, installRESContent); 
+    context.registerModType('gb-Res-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, RES_MOD_FILE_EXT));
+
+
+    context.registerInstaller('groundbranch-mod-csv', 25, testSupportForCSV, installCSVContent); 
+    context.registerModType('gb-CSV-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, CSV_MOD_FILE_EXT));
+
+    context.registerInstaller('groundbranch-mod-png', 25, testSupportForPNG, installPNGContent); 
+    context.registerModType('gb-png-modtype', 15, (gameId) => (gameId === GAME_ID), () => getDiscoveryPath(context.api) , (instructions) => instructionsHaveFile(instructions, PNG_MOD_FILE_EXT));
+
   };
  
 
