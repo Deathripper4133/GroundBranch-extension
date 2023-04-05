@@ -4,8 +4,7 @@ const STEAMAPP_ID = '16900';
 
 //Import some assets from Vortex we'll need.
 const path = require('path');
-const FSystem = require('fs');
-const { actions, fs, log, util } = require('vortex-api');
+const { fs, log, util } = require('vortex-api');
 const { mapPath } = require('./pathmapper.js');
 
 function findGame() {
