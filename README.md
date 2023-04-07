@@ -4,6 +4,9 @@ This extension provides support for GROUND BRANCH mods to be installed using Vor
 
 It only supports mods that use one of the common layouts.
 
+https://www.nexusmods.com/site/mods/412
+
+
 ## Notes for Users 
 
 If a mod was installed but is not working in-game 
