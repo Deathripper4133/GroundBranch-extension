@@ -4,13 +4,26 @@ This extension provides support for GROUND BRANCH mods to be installed using Vor
 
 It only supports mods that use one of the common layouts.
 
+## Notes for Users 
+
+If a mod was installed but is not working in-game 
+- i.e patches not showing up in-game
+
+Then it is likely the mod Folder Directory was not supported and was subsequently installed at:
+
+    */steamapps/common/Ground Branch/{modfolder}
+
+>Note that any mods that are moved will no longer be managable by Vortex. It is recommended to install unsupported mods manually. Additionally, if after installing a mod that changes UE assets, your game is stuck in the loading screen you will need to change the [Vortex Deployment Method](https://wiki.nexusmods.com/index.php/Deployment_Methods) to Hard Link
+
+
+
 ## Notes for mod authors
 
 Mods need to use one of the common layouts.
 
 For example if we have:
 
-    steamapps/common/Ground Branch/GroundBranch/Content/GroundBranch/Mission/Tanker/TerroristHuntCustom.mis
+    */steamapps/common/Ground Branch/GroundBranch/Content/GroundBranch/Mission/Tanker/TerroristHuntCustom.mis
 
 It should be packaged as:
 
@@ -38,6 +51,12 @@ PNG files that are **not** stored in one of these layouts will be
 installed to:
 
     GroundBranch/Content/GroundBranch/Patches/Various/
+
+PNG files that do **not** have an `(Author)` will be installed to:
+
+    */steamapps/common/Ground Branch/{modfolder} 
+
+
 
 ### Opting out of Vortex
 
