@@ -61,6 +61,9 @@ function main(context) {
 		  'GroundBranch.exe'
 		],
 		setup: prepareForModding,
+    compatible: {
+      symlinks: false,
+    },
 		environment: {
 		  SteamAPPId: STEAMAPP_ID
 		},
