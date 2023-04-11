@@ -8,8 +8,10 @@ const path = require('path');
 //
 const PATH_MAPPING = [
     {from: "/GroundBranch/Content/GroundBranch/", to: "GroundBranch/Content/GroundBranch/"},
+    {from: "/GroundBranch/Content/GBCore/", to: "GroundBranch/Content/GBCore/"},
     {from: "/GroundBranch/Content/Localization/", to: "GroundBranch/Content/Localization/"},
     {from: "/Content/GroundBranch/", to: "GroundBranch/Content/GroundBranch/"},
+    {from: "/Content/GBCore/", to: "GroundBranch/Content/GBCore/"},
     {from: "/Content/Localization/", to: "GroundBranch/Content/Localization/"},
 ];
 
