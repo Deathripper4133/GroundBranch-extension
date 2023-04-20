@@ -13,6 +13,8 @@ const PATH_MAPPING = [
     {from: "/Content/GroundBranch/", to: "GroundBranch/Content/GroundBranch/"},
     {from: "/Content/GBCore/", to: "GroundBranch/Content/GBCore/"},
     {from: "/Content/Localization/", to: "GroundBranch/Content/Localization/"},
+    {from: "/GroundBranch/Config/", to: "GroundBranch/Config/"},
+    {from: "/Config/", to: "GroundBranch/Config/"},
 ];
 
 const PATCH_DIRECTORY = 'GroundBranch/Content/GroundBranch/Patches/Various/';
