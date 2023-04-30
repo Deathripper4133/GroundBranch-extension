@@ -9,6 +9,8 @@ https://www.nexusmods.com/site/mods/412
 
 ## Notes for Users 
 
+You will **NEED** to **MOVE** the **STAGING FOLDER** to the **SAME DRIVE** as **GROUND BRANCH** in order use **ANY MODS**. See 3rd screenshot for instructions.
+
 If a mod was installed but is not working in-game 
 - i.e patches not showing up in-game
 
@@ -16,7 +18,7 @@ Then it is likely the mod Folder Directory was not supported and was subsequentl
 
     */steamapps/common/Ground Branch/{modfolder}
 
->Note that any mods that are moved will no longer be managable by Vortex. It is recommended to install unsupported mods manually. Additionally, if after installing a mod that changes UE assets, your game is stuck in the loading screen you will need to change the [Vortex Deployment Method](https://wiki.nexusmods.com/index.php/Deployment_Methods) to Hard Link
+>Note that any mods that are moved will no longer be managable by Vortex. It is recommended to install unsupported mods manually.
 
 
 
