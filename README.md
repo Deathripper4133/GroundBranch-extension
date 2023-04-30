@@ -9,7 +9,12 @@ https://www.nexusmods.com/site/mods/412
 
 ## Notes for Users 
 
-You will **NEED** to **MOVE** the **STAGING FOLDER** to the **SAME DRIVE** as **GROUND BRANCH** in order use **ANY MODS**. See 3rd screenshot for instructions.
+You will **NEED** to **MOVE** the **STAGING FOLDER** to the **SAME DRIVE** as **GROUND BRANCH** in order use **ANY MODS**. 
+
+- Activate GROUND BRANCH > Settings > Mods > Staging folder* > Deployment Method*
+    *   *Change Staging folder location so its in the same drive as GROUND BRANCH
+    *   **Set the deployment method to HARDLINK 
+
 
 If a mod was installed but is not working in-game 
 - i.e patches not showing up in-game
