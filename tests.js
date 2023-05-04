@@ -16,6 +16,8 @@ const testCases = [
     ["/SomeDirectory/x.png", null],
     ["/SomeDirectory/(author)name.png", "GroundBranch/Content/GroundBranch/Patches/Various/(author)name.png"],
     ["/SomeDirectory/my.pak", "GroundBranch/Content/Paks/my.pak"],
+    ["/SomeDirectory/Config/AISettings.ini", "GroundBranch/Config/AISettings.ini"],
+    ["/Config/AISettings.ini", "GroundBranch/Config/AISettings.ini"]
 ];
 
 let errors = [];
