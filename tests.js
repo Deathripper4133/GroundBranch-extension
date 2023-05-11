@@ -17,7 +17,11 @@ const testCases = [
     ["/SomeDirectory/(author)name.png", "GroundBranch/Content/GroundBranch/Patches/Various/(author)name.png"],
     ["/SomeDirectory/my.pak", "GroundBranch/Content/Paks/my.pak"],
     ["/SomeDirectory/Config/AISettings.ini", "GroundBranch/Config/AISettings.ini"],
-    ["/Config/AISettings.ini", "GroundBranch/Config/AISettings.ini"]
+    ["/Config/AISettings.ini", "GroundBranch/Config/AISettings.ini"],
+    ["SomeDirectory/Win64/Reshade.ini", "GroundBranch/Binaries/Win64/Reshade.ini"],
+    ["SomeDirectory/Binaries/Win64/Reshade.ini", "GroundBranch/Binaries/Win64/Reshade.ini"],
+    ["Binaries/Win64/Reshade.ini", "GroundBranch/Binaries/Win64/Reshade.ini"],
+    ["Win64/Reshade.ini", "GroundBranch/Binaries/Win64/Reshade.ini"]
 ];
 
 let errors = [];
