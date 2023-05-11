@@ -15,6 +15,8 @@ const PATH_MAPPING = [
     {from: "/Content/Localization/", to: "GroundBranch/Content/Localization/"},
     {from: "/GroundBranch/Config/", to: "GroundBranch/Config/"},
     {from: "/Config/", to: "GroundBranch/Config/"},
+    {from: "/Win64/", to: "GroundBranch/Binaries/Win64/"},
+    {from: "/Binaries/Win64/", to: "GroundBranch/Binaries/Win64/"},
 ];
 
 const PATCH_DIRECTORY = 'GroundBranch/Content/GroundBranch/Patches/Various/';
